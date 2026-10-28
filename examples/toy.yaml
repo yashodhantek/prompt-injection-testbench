@@ -1,0 +1,7 @@
+# Runs against the deliberately weak toy agent. Expect lots of failures.
+target:
+  type: python
+  callable: toy_agent:naive
+
+run:
+  repeat: 1

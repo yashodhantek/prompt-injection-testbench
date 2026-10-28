@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prompt-injection-testbench"
+dynamic = ["version"]
+description = "Throw prompt-injection attacks at your LLM app or agent and see which ones land."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "YashodhanTek" }]
+requires-python = ">=3.9"
+dependencies = ["PyYAML>=6.0"]
+keywords = ["llm", "prompt-injection", "security", "red-team", "agents", "testing"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Security",
+  "Topic :: Software Development :: Testing",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.5", "markdown>=3.5"]
+
+[project.urls]
+Homepage = "https://github.com/yashodhantek/prompt-injection-testbench"
+Issues = "https://github.com/yashodhantek/prompt-injection-testbench/issues"
+
+[project.scripts]
+pitb = "pitb.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "pitb.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pitb = ["packs/*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]  # long YAML-ish strings and test data; ruff format handles the rest

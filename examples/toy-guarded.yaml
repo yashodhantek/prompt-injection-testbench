@@ -1,0 +1,3 @@
+target:
+  type: python
+  callable: toy_agent:guarded

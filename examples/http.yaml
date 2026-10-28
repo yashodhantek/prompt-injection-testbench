@@ -1,0 +1,18 @@
+# Your own chat API. pitb sends a POST with the body below and reads the answer
+# from `response_path`. Use dotted paths for nested JSON, e.g. data.choices.0.text
+target:
+  type: http
+  url: http://localhost:8000/chat
+  headers:
+    Authorization: Bearer ${APP_TOKEN}
+  body:
+    session_id: pitb
+    message: "{prompt}"
+    # If your API takes retrieved documents separately, map them here.
+    # Without a {context} field the document is appended to the message.
+    documents: ["{context}"]
+  response_path: answer
+  tool_calls_path: actions          # optional: list of {name, arguments}
+  # You can't template a black-box system prompt, so put a fake secret in your
+  # app's prompt for the test (e.g. "Internal code: CANARY-TEST-1234") and list it here.
+  canary: CANARY-TEST-1234

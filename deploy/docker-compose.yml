@@ -1,0 +1,9 @@
+services:
+  docs:
+    build:
+      context: ..
+      dockerfile: docs/Dockerfile
+    image: pitb-docs:local
+    ports:
+      - "127.0.0.1:${PITB_PORT:-8088}:8080"
+    restart: unless-stopped

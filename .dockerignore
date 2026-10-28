@@ -1,0 +1,11 @@
+.git
+.venv
+venv
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+docs/site
+deploy/vps.env
+*.xml
+report.md
+report.json
